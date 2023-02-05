@@ -2,6 +2,8 @@ import { useState } from "react";
 
 function PizzaBlock ({ image, name, types, sizes}) {
     const [count, setCount] = useState(0)
+    const [activeType, setActiveType] = useState(0)
+    const [activeSize, setActiveSize] = useState(0)
     return (
       <div className="pizza-block">
       <img
@@ -12,10 +14,10 @@ function PizzaBlock ({ image, name, types, sizes}) {
       <h4 className="pizza-block__title">{name}</h4>
       <div className="pizza-block__selector">
         <ul>
-        {types.map((type, index) => <li key={index + 1} > {type === 0 ? 'тонкое' : 'толстое'} </li>)}
+        {types.map((type, index) => <li onClick={() => setActiveType(index)} className={index === activeType? 'active' : ''} key={index} > {type === 0 ? 'тонкое' : 'толстое'} </li>)}
         </ul>
         <ul>
-            {sizes.map((size, index) => <li  key={index + 1}>{`${size} см`}</li>)}
+            {sizes.map((size, index) => <li onClick={() => setActiveSize(index)} className={index === activeSize ? 'active' : ''} key={index}>{`${size} см`}</li>)}
         </ul>
       </div>
       <div className="pizza-block__bottom">
